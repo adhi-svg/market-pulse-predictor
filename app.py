@@ -32,7 +32,8 @@ if uploaded_file is not None:
     X_test = X_test.reshape((X_test.shape[0], X_test.shape[1], 1))
 
     # Load model
-    model = load_model('model.h5')
+    model = load_model("model.keras")
+
     predictions = model.predict(X_test)
     predictions = scaler.inverse_transform(predictions)
 
