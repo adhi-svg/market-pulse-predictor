@@ -6,7 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import matplotlib.pyplot as plt
 import io
-import seaborn as sns
+
 st.title("📈 AI-Driven Stock Price Prediction")
 
 uploaded_file = st.file_uploader("Upload your stock CSV file", type=["csv"])
