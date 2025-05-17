@@ -96,11 +96,15 @@ if uploaded_file is not None:
     plt.tight_layout()
     st.pyplot(fig)
 
-    plt.figure(figsize=(10, 8))
+    df = pd.read_csv("GOOGL.csv")
+
+    fig, ax = plt.subplots(figsize=(10, 8))
+
     corr_matrix = df[['Open', 'High', 'Low', 'Close', 'Volume']].corr()
-    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
-    plt.title('Correlation Heatmap')
-    plt.show()
+     sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5, ax=ax)
+    ax.set_title('Correlation Heatmap')
+
+    st.pyplot(fig)
 
     # Prediction vs Actual plot
     st.subheader("Prediction vs Actual Stock Prices")
