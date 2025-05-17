@@ -6,7 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import matplotlib.pyplot as plt
 import io
-
+import seaborn as sns
 st.title("📈 AI-Driven Stock Price Prediction")
 
 uploaded_file = st.file_uploader("Upload your stock CSV file", type=["csv"])
@@ -70,6 +70,37 @@ if uploaded_file is not None:
     st.write(f"Root Mean Squared Error (RMSE): {rmse:.4f}")
     st.write(f"Mean Absolute Error (MAE): {mae:.4f}")
     st.write(f"R² Score: {r2:.4f}")
+   
+
+    df = pd.read_csv("GOOGL.csv")
+
+    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+    sns.histplot(df['Close'], bins=30, kde=True, color='skyblue', ax=axes[0])
+    axes[0].set_title('Histogram of Close Prices')
+
+    sns.histplot(df['Volume'], bins=30, kde=True, color='salmon', ax=axes[1])
+    axes[1].set_title('Histogram of Volume')
+
+    st.pyplot(fig)
+    df = pd.read_csv("GOOGL.csv")
+
+    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+    sns.boxplot(x=df['Close'], color='lightgreen', ax=axes[0])
+    axes[0].set_title('Boxplot of Close Prices')
+
+    sns.boxplot(x=df['Volume'], color='lightcoral', ax=axes[1])
+    axes[1].set_title('Boxplot of Volume')
+   
+    plt.tight_layout()
+    st.pyplot(fig)
+
+    plt.figure(figsize=(10, 8))
+    corr_matrix = df[['Open', 'High', 'Low', 'Close', 'Volume']].corr()
+    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
+    plt.title('Correlation Heatmap')
+    plt.show()
 
     # Prediction vs Actual plot
     st.subheader("Prediction vs Actual Stock Prices")
