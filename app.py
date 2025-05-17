@@ -101,7 +101,7 @@ if uploaded_file is not None:
     fig, ax = plt.subplots(figsize=(10, 8))
 
     corr_matrix = df[['Open', 'High', 'Low', 'Close', 'Volume']].corr()
-     sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5, ax=ax)
+    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5, ax=ax)
     ax.set_title('Correlation Heatmap')
 
     st.pyplot(fig)
